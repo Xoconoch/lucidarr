@@ -1,29 +1,27 @@
 {
-    "modules": {
-      "1": {
-        "type": "deezer",
-        "name": "Deezer MX",
-        "logins": {
-            "username": "deez.2083@cordovault.com",
-            "password": "JvtRT36fDSE4BYB8zj744N68g"
-        },
-        "options": {
-            "quality": "FLAC"
-        }
+  "modules": {
+    "1": {
+      "type": "deezer",
+      "name": "Deezer MX",
+      "logins": {
+        "username": "deez.2083@cordovault.com",
+        "password": "JvtRT36fDSE4BYB8zj744N68g"
       },
-      "2": {
-        "type": "qobuz",
-        "name": "Qobuz MX",
-        "logins": {
-            "username": "multicuentadexoconoch@gmail.com",
-            "password": "t5gu2Fz0U23DAS1ZjU8F7r3wP"
-        },
-        "options": {
-            "appId": "579939560",
-            "appSecret": "fa31fc13e7a28e7d70bb61e91aa9e178"
-        }
+      "options": {
+        "quality": "FLAC"
+      }
+    },
+    "2": {
+      "type": "qobuz",
+      "name": "Qobuz MX",
+      "logins": {
+        "username": "multicuentadexoconoch@gmail.com",
+        "password": "t5gu2Fz0U23DAS1ZjU8F7r3wP"
+      },
+      "options": {
+        "appId": "579939560",
+        "appSecret": "fa31fc13e7a28e7d70bb61e91aa9e178"
       }
     }
+  }
 }
-
-  
