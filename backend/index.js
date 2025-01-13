@@ -1,17 +1,20 @@
 import express from 'express';
-import searchRoute from './routes/searchRoute.js/index.js';
-import downloadAlbumRoute from './routes/downloadAlbum.js';
+import modulesRoute from './routes/search/searchModules.js';
+import searchRoute from './routes/search/searchRoute.js';
+import downloadAlbumRoute from './routes/download/downloadAlbum.js';
+import downloadTrackRoute from './routes/download/downloadTrack.js';
+import downloadArtistRoute from './routes/download/downloadArtist.js'; 
 
 const app = express();
 const port = 3000;
 
 const router = express.Router();
 
-
-router.get('/search', searchRoute);  // Use imported search route
-router.get('/download/album', downloadAlbumRoute); // Use imported download album route
-
-
+router.get('/modules', modulesRoute);
+router.get('/search', searchRoute);
+router.get('/download/album', downloadAlbumRoute);
+router.get('/download/track', downloadTrackRoute);
+router.get('/download/artist', downloadArtistRoute);  
 
 
 app.use(express.json());
