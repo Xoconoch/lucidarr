@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "esrun": "^3.2.26",
+    "lucida": "^2.0.0-54",
+    "lucida-tagger": "^0.1.1",
+    "spotify-zeroconf": "^0.1.4"
+  },
+  "type": "module"
+}
