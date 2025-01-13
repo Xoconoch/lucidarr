@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { loadModules } from '../loaders/modulesLoader';
+import { loadModules } from '../loaders/modulesLoader.js';
 const CONFIG_PATH = './config/modules.json';
 export function searchByModule(moduleId, query, limit) {
     return __awaiter(this, void 0, void 0, function* () {

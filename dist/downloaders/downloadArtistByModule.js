@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { loadModules } from '../loaders/modulesLoader';
-import { downloadAlbumByModule } from './downloadAlbumByModule';
+import { loadModules } from '../loaders/modulesLoader.js';
+import { downloadAlbumByModule } from './downloadAlbumByModule.js';
 export function downloadArtistByModule(moduleId, url) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;

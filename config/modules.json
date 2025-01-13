@@ -1,6 +1,6 @@
 {
     "modules": {
-      "4566345": {
+      "1": {
         "type": "deezer",
         "name": "Deezer MX",
         "logins": {
@@ -11,7 +11,7 @@
             "quality": "FLAC"
         }
       },
-      "36456345": {
+      "2": {
         "type": "qobuz",
         "name": "Qobuz MX",
         "logins": {
