@@ -1,7 +1,7 @@
 import { downloadTrackByModule } from './src/downloaders/downloadTrackByModule';
 
 async function main() {
-  const moduleId = '4566345';
+  const moduleId = '1';
   const artistUrl = 'https://deezer.page.link/ABFjZAdznM39WPdXA';
 
   try {
