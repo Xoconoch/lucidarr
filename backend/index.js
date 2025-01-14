@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import editModule from './routes/modules/editModule.js';
 import checkModules from './routes/modules/checkModules.js';
 import addModule from './routes/modules/addModule.js';
 import removeModule from './routes/modules/removeModule.js';
@@ -15,6 +16,7 @@ const port = 3030;
 
 const router = express.Router();
 
+router.put('/modules/edit/:id', editModule);
 router.get('/modules/check', checkModules);
 router.post('/modules/add', addModule);
 router.delete('/modules/remove', removeModule);
