@@ -6,6 +6,9 @@ export const handleTracks = (item, div) => {
 
     if (coverArt) {
         const img = createImage(coverArt.url, `${item.title} Cover`);
+        img.style.width = '128px'; // Set width to 128px
+        img.style.height = '128px'; // Set height to 128px
+        img.style.objectFit = 'cover'; // Ensure it is cropped correctly
         div.appendChild(img);
     }
 

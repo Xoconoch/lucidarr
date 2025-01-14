@@ -16,6 +16,7 @@ const port = 3030;
 
 const router = express.Router();
 
+// API Routes
 router.put('/modules/edit/:id', editModule);
 router.get('/modules/check', checkModules);
 router.post('/modules/add', addModule);
@@ -28,13 +29,20 @@ router.get('/download/track', downloadTrack);
 app.use(express.json());
 app.use('/api', router);
 
-const __filename = fileURLToPath(import.meta.url);  
-const __dirname = path.dirname(__filename);        
+// Resolve __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// Set up the public directory
 const publicDirectory = path.join(__dirname, '../public');
-
 app.use(express.static(publicDirectory));
 
+// Serve settings.html at /settings
+app.get('/settings', (req, res) => {
+  res.sendFile(path.join(publicDirectory, 'settings.html'));
+});
+
+// Start the server
 app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
+  console.log(`Server listening at http://localhost:${port}`);
 });

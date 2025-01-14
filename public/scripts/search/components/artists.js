@@ -8,6 +8,9 @@ export const handleArtists = (item, div) => {
 
     if (artistImage) {
         const img = createImage(artistImage, `${item.name} Picture`);
+        img.style.width = '128px'; // Set width to 128px
+        img.style.height = '128px'; // Set height to 128px
+        img.style.objectFit = 'cover'; // Ensure it is cropped correctly
         div.appendChild(img);
     }
 

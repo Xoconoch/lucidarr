@@ -1,8 +1,4 @@
-import { createModuleContainer } from './components/createModuleContainer.js';
-
-const baseUrl = window.location.origin; // Get the base URL dynamically
-
-function createModuleConfig(modules) {
+export function createModuleConfig(modules) {
   const configContainer = document.createElement('div');
   configContainer.id = 'module-config';
 
@@ -14,5 +10,3 @@ function createModuleConfig(modules) {
 
   return configContainer;
 }
-
-export { createModuleConfig };

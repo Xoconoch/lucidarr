@@ -1,7 +1,7 @@
-import { handleAlbums } from './components/albums.js';
-import { handleTracks } from './components/tracks.js';
-import { handleArtists } from './components/artists.js';
-import { downloadItem } from './components/downloadItem.js';
+import { handleAlbums } from './albums.js';
+import { handleTracks } from './tracks.js';
+import { handleArtists } from './artists.js';
+import { downloadItem } from '../../download/downloadItem.js';
 
 export const populateList = (category, container, moduleId, data) => {
     data[category].forEach(item => {

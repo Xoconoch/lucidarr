@@ -1,4 +1,4 @@
-import { populateList } from './search/populateList.js';
+import { populateList } from './components/populateList.js';
 
 const createDetailsList = (summaryText, id) => {
     const details = document.createElement('details');

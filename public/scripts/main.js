@@ -1,9 +1,6 @@
     // main.js
-    import { createModuleSelect, populateModuleSelect } from './scripts/modules/moduleSelect.js';
-    import { createSearchInput, createSearchButton, createSearchResultsSection, handleSearch } from './scripts/search.js';
-    import { createModuleConfig } from './scripts/modules/configureModules.js';
-    import { fetchModules } from './scripts/modules/fetchModules.js'; // Import the shared function
-
+    import { createModuleSelect, populateModuleSelect } from './modules/moduleSelect.js';
+    import { createSearchInput, createSearchButton, createSearchResultsSection, handleSearch } from './search/search.js';
 
     const appContainer = document.getElementById('music-search-app');
 
@@ -11,13 +8,6 @@
     const moduleSelect = createModuleSelect();
     appContainer.appendChild(moduleSelect);
     populateModuleSelect(moduleSelect);  // Populate the select
-
-
-    fetchModules().then(modules => {  // Fetch modules for config
-        const moduleConfig = createModuleConfig(modules);
-        appContainer.appendChild(moduleConfig); // Append the config area
-    });
-
 
 
     // Search Section (unchanged)
