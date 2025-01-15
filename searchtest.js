@@ -1,7 +1,7 @@
 import { searchByModule } from './dist/searchers/searchByModule.js';
 
 (async function testSearch() {
-    const moduleId = "4566345"; // ID del módulo
+    const moduleId = "4475cb"; // ID del módulo
     const query = "testing";   // Consulta de búsqueda
     const limit = 10;          // Límite de resultados
 
