@@ -3,78 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Search</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100vh;
-        }
-
-        #music-search-app {
-            flex: 3;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        #download-queue {
-            flex: 1;
-            background-color: #f4f4f4;
-            border-left: 1px solid #ccc;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        #download-queue h3 {
-            margin-top: 0;
-        }
-
-        #music-search-app > * {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        li {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #fff;
-            border-radius: 5px;
-        }
-
-        button {
-            cursor: pointer;
-            padding: 5px 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #main-container {
-            display: flex;
-            height: 100%;
-        }
-    </style>
+    <title>Lucidarr</title>
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
     <div id="main-container">
+        <!-- Button for settings -->
+        <a href="/settings" id="settings-button">Settings</a>
+
         <!-- Main App Content -->
         <div id="music-search-app">
-            <h1>Music Search</h1>
+            <h1>Lucidarr</h1>
             <div id="search-results">
                 <h2>Search Results</h2>
                 <ul id="results-list"></ul>

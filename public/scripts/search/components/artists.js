@@ -1,10 +1,7 @@
 import { createImage, createParagraph } from './helpers.js';
 
 export const handleArtists = (item, div) => {
-    const artistImage = item.pictures?.find(pic => {
-        const dimensions = pic.split('/').pop().split('-')[0]; // Extract dimensions (e.g., 256x256)
-        return dimensions === '256x256';
-    });
+    const artistImage = item.pictures?.[0]; // Take the first image in the array
 
     if (artistImage) {
         const img = createImage(artistImage, `${item.name} Picture`);

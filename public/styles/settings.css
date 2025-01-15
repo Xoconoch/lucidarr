@@ -1,0 +1,126 @@
+/* General Reset */
+body, h1, h2, h3, p, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial Black', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #fff; /* Light text */
+    line-height: 1.6;
+}
+
+/* Header Styling */
+header {
+    background-color: #f06292; /* Vibrant pink header */
+    color: #121212; /* Contrast with dark text */
+    padding: 1rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-shadow: 2px 2px 0 #444;
+}
+
+/* Main Container */
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Settings Container */
+#settings-container {
+    background: #1c1c1c; /* Dark card background */
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Module Section */
+#settings-container > div {
+    margin-bottom: 2rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+#settings-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #f06292; /* Match header color */
+}
+
+/* Label and Input Alignment */
+label {
+    display: inline-block;
+    width: 120px; /* Fixed width for labels */
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333; /* Dark input background */
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #aaa;
+}
+
+/* Align "Options" Inputs and Labels Side by Side */
+.options-container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Label and input side-by-side */
+    gap: 0.5rem; /* Space between label and input */
+    align-items: center; /* Align inputs with labels vertically */
+}
+
+.options-container label {
+    margin: 0; /* Reset margin for inline appearance */
+}
+
+.options-container input {
+    width: 100%; /* Use full width for input fields */
+}
+
+/* Button Styling */
+button, input[type="button"] {
+    background-color: #f06292; /* Vibrant pink button */
+    color: #121212;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0.5rem 0.5rem 0; /* Adds separation between buttons */
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, input[type="button"]:hover {
+    background-color: #d81b60; /* Deeper pink on hover */
+    transform: scale(1.05);
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    background-color: #1c1c1c; /* Dark footer background */
+    color: #888;
+    border-top: 1px solid #444;
+}
