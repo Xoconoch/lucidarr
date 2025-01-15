@@ -10,7 +10,13 @@ COPY package.json ./
 RUN npm install
 
 # Copy the rest of the application source code into the working directory
-COPY . .
+COPY backend ./backend
+COPY config ./config
+COPY dist ./dist
+COPY public ./public
+COPY tsconfig.json ./
+
+
 
 # Expose the port the app runs on
 EXPOSE 3030
