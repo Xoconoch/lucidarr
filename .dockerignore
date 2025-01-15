@@ -1,2 +1,6 @@
 searchtest.js
 .gitignore
+Dockerfile
+README.md
+package-lock.json
+node_modules

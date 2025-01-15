@@ -4,9 +4,5 @@
     "lucida": "^2.0.0-54",
     "lucida-tagger": "^0.1.1"
   },
-  "type": "module",
-  "devDependencies": {
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1"
-  }
+  "type": "module"
 }
