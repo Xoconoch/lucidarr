@@ -16,4 +16,4 @@ As such:
 As such:
 ![image](https://github.com/user-attachments/assets/dc9bec8d-e8e8-4d04-b83a-49947d516b44)
 
-Note that you can get your appId and appSecrete [here](https://gist.github.com/vitiko98/bb89fd203d08e285d06abf40d96db592)
+Note that you can get your appId and appSecret [here](https://gist.github.com/vitiko98/bb89fd203d08e285d06abf40d96db592)
