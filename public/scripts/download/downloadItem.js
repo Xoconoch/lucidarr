@@ -1,4 +1,4 @@
-const MAX_CONCURRENT_DOWNLOADS = 3; // Adjust as needed
+const MAX_CONCURRENT_DOWNLOADS = 1; // Adjust as needed
 let activeDownloads = 0;
 const downloadQueue = [];
 
@@ -25,16 +25,11 @@ export const downloadItem = (moduleId, itemUrl, itemType, listItem) => {
 
     const downloadUrl = `${endpoint}?moduleId=${moduleId}&${paramName}=${encodeURIComponent(itemUrl)}`;
 
-    const startDownload = () => {
+    const startDownload = (queuedListItem) => {
         activeDownloads++;
 
-        // Move the item to the "download queue"
-        const queueElement = document.getElementById('download-queue');
-        const statusText = document.createElement('span');
+        const statusText = queuedListItem.querySelector('.status-text');
         statusText.textContent = 'Downloading...';
-        listItem.querySelector('button').remove(); // Remove the download button
-        listItem.appendChild(statusText);
-        queueElement.appendChild(listItem);
 
         fetch(downloadUrl)
             .then(response => {
@@ -45,7 +40,6 @@ export const downloadItem = (moduleId, itemUrl, itemType, listItem) => {
                 const reader = response.body.getReader();
                 const decoder = new TextDecoder();
 
-                // Recursive function to process the stream
                 const processResult = ({ done, value }) => {
                     if (done) {
                         statusText.textContent = 'Download complete';
@@ -83,14 +77,31 @@ export const downloadItem = (moduleId, itemUrl, itemType, listItem) => {
 
     const processQueue = () => {
         if (activeDownloads < MAX_CONCURRENT_DOWNLOADS && downloadQueue.length > 0) {
-            const nextDownload = downloadQueue.shift();
-            nextDownload();
+            const { startFn, queuedListItem } = downloadQueue.shift();
+            startFn(queuedListItem);
         }
     };
 
+    // Remove the item from the search results list
+    const parentList = listItem.parentElement;
+    if (parentList) {
+        parentList.removeChild(listItem);
+    }
+
+    // Visualize the item in the queue immediately
+    const queueElement = document.getElementById('download-queue');
+    const queuedListItem = listItem.cloneNode(true);
+    queuedListItem.querySelector('button').remove(); // Remove the download button
+    const statusText = document.createElement('span');
+    statusText.classList.add('status-text');
+    statusText.textContent = 'Waiting in queue...';
+    queuedListItem.appendChild(statusText);
+    queueElement.appendChild(queuedListItem);
+
+    // Queue or start the download
     if (activeDownloads < MAX_CONCURRENT_DOWNLOADS) {
-        startDownload();
+        startDownload(queuedListItem);
     } else {
-        downloadQueue.push(startDownload);
+        downloadQueue.push({ startFn: startDownload, queuedListItem });
     }
 };
