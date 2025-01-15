@@ -5,6 +5,10 @@ export function createModuleConfig(modules) {
   for (const moduleId in modules) {
     const moduleData = modules[moduleId];
     const moduleContainer = createModuleContainer(moduleId, moduleData);
+    
+    // Add the 'module-container' class for styling
+    moduleContainer.classList.add('module-container');
+    
     configContainer.appendChild(moduleContainer);
   }
 

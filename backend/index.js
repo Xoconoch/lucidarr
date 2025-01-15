@@ -37,6 +37,11 @@ const __dirname = path.dirname(__filename);
 const publicDirectory = path.join(__dirname, '../public');
 app.use(express.static(publicDirectory));
 
+// Serve settings.html at /settings
+app.get('/settings', (req, res) => {
+  res.sendFile(path.join(publicDirectory, 'settings.html'));
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

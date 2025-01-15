@@ -1,3 +1,7 @@
+const MAX_CONCURRENT_DOWNLOADS = 3; // Adjust as needed
+let activeDownloads = 0;
+const downloadQueue = [];
+
 export const downloadItem = (moduleId, itemUrl, itemType, listItem) => {
     const endpointMap = {
         album: '/api/download/album',
@@ -21,54 +25,72 @@ export const downloadItem = (moduleId, itemUrl, itemType, listItem) => {
 
     const downloadUrl = `${endpoint}?moduleId=${moduleId}&${paramName}=${encodeURIComponent(itemUrl)}`;
 
-    // Mueve el elemento a la barra lateral "download queue"
-    const downloadQueue = document.getElementById('download-queue');
-    const statusText = document.createElement('span');
-    statusText.textContent = 'Downloading...';
-    listItem.querySelector('button').remove(); // Eliminar el botón de descarga
-    listItem.appendChild(statusText);
-    downloadQueue.appendChild(listItem);
+    const startDownload = () => {
+        activeDownloads++;
 
-    fetch(downloadUrl)
-        .then(response => {
-            if (!response.body) {
-                throw new Error('No response body received.');
-            }
+        // Move the item to the "download queue"
+        const queueElement = document.getElementById('download-queue');
+        const statusText = document.createElement('span');
+        statusText.textContent = 'Downloading...';
+        listItem.querySelector('button').remove(); // Remove the download button
+        listItem.appendChild(statusText);
+        queueElement.appendChild(listItem);
 
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder();
-
-            // Función recursiva para leer el stream y actualizar el texto de estado
-            const processResult = ({ done, value }) => {
-                if (done) {
-                    statusText.textContent = 'Download complete';
-                    return;
+        fetch(downloadUrl)
+            .then(response => {
+                if (!response.body) {
+                    throw new Error('No response body received.');
                 }
 
-                const chunk = decoder.decode(value, { stream: true });
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
 
-                try {
-                    // Limpiar el prefijo "data: " si existe
-                    const jsonString = chunk.startsWith('data: ') ? chunk.slice(6) : chunk;
-
-                    // Parsear el JSON
-                    const json = JSON.parse(jsonString);
-                    if (json.progress) {
-                        statusText.textContent = json.progress; // Mostrar solo el campo "progress"
-                    } else {
-                        console.warn('Progress field missing in stream data:', jsonString);
+                // Recursive function to process the stream
+                const processResult = ({ done, value }) => {
+                    if (done) {
+                        statusText.textContent = 'Download complete';
+                        activeDownloads--;
+                        processQueue();
+                        return;
                     }
-                } catch (error) {
-                    console.error('Failed to parse JSON from stream:', error, chunk);
-                }
+
+                    const chunk = decoder.decode(value, { stream: true });
+
+                    try {
+                        const jsonString = chunk.startsWith('data: ') ? chunk.slice(6) : chunk;
+                        const json = JSON.parse(jsonString);
+                        if (json.progress) {
+                            statusText.textContent = json.progress;
+                        } else {
+                            console.warn('Progress field missing in stream data:', jsonString);
+                        }
+                    } catch (error) {
+                        console.error('Failed to parse JSON from stream:', error, chunk);
+                    }
+
+                    return reader.read().then(processResult);
+                };
 
                 return reader.read().then(processResult);
-            };
+            })
+            .catch(error => {
+                console.error('Download failed:', error);
+                statusText.textContent = 'Download failed';
+                activeDownloads--;
+                processQueue();
+            });
+    };
 
-            return reader.read().then(processResult);
-        })
-        .catch(error => {
-            console.error('Download failed:', error);
-            statusText.textContent = 'Download failed';
-        });
+    const processQueue = () => {
+        if (activeDownloads < MAX_CONCURRENT_DOWNLOADS && downloadQueue.length > 0) {
+            const nextDownload = downloadQueue.shift();
+            nextDownload();
+        }
+    };
+
+    if (activeDownloads < MAX_CONCURRENT_DOWNLOADS) {
+        startDownload();
+    } else {
+        downloadQueue.push(startDownload);
+    }
 };

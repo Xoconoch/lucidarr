@@ -10,7 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as fs from 'fs/promises';
 import Default from 'lucida-tagger/build/index.js';
 import { loadModules } from '../loaders/modulesLoader.js';
-const CONFIG_PATH = './config/modules.json';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const CONFIG_PATH = join(__dirname, '..', '..', 'config', 'modules.json');
 export function downloadTrackByModule(moduleId, trackUrl) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a, _b, _c, _d, _e, _f, _g;

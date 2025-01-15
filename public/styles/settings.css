@@ -124,3 +124,22 @@ footer {
     color: #888;
     border-top: 1px solid #444;
 }
+
+/* Individual Module Containers */
+#module-config > .module-container {
+    margin-bottom: 2rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Module Headers */
+.module-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #f06292; /* Match header color */
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5rem;
+}
